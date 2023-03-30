@@ -11,28 +11,28 @@
     function WebSocketTest() {
         if ("WebSocket" in window) {
             console.log("您的浏览器支持 WebSocket!");
-            // 打开一个 web socket
-            var ws = new WebSocket("ws://localhost:8888/echo");
+            // 打开一个 web socket 链接 8888 端口
+            var ws = new WebSocket("ws://localhost:8888");
             ws.onopen = function () {
                 // Web Socket 已连接上，使用 send() 方法发送数据
-                ws.send("发送数据");
-                 console.log("数据发送中...");
+                ws.send("HTML发送数据");
+                console.log("数据发送中...");
             };
 
             ws.onmessage = function (evt) {
                 var received_msg = evt.data;
-                 console.log("数据已接收...");
+                console.log("数据已接收...", received_msg);
             };
 
             ws.onclose = function () {
                 // 关闭 websocket
-                 console.log("连接已关闭...");
+                console.log("连接已关闭...");
             };
         }
 
         else {
             // 浏览器不支持 WebSocket
-             console.log("您的浏览器不支持 WebSocket!");
+            console.log("您的浏览器不支持 WebSocket!");
         }
     }
 </script>

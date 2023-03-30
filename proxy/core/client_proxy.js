@@ -15,7 +15,7 @@ var PROXY_PORT = 27017;
 var eventSocket = new net.Socket();
 var id;
 eventSocket.connect({ host: SERVER_HOST, port: SERVER_PORT }, () => {
-    console.log('客户端服务启动成功', SERVER_HOST, SERVER_PORT)
+    console.log('client_proxy 链接到后面的地址', SERVER_HOST, SERVER_PORT)
     eventSocket.on('response', data => {
         //本次会话的id
         id = data.id;

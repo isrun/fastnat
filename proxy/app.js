@@ -7,8 +7,8 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-var server_proxy = require('./core/server_proxy');
 var client_proxy = require('./core/client_proxy');
+var server_proxy = require('./core/server_proxy');
 
 
 var app = express();

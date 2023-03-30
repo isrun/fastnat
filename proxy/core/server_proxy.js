@@ -44,8 +44,10 @@ var eventServer = net.createServer(socket => {
     // socket.on('end', handler);
     socket.on('close', handler);
 });
+// 通信 socket 监听错误
 eventServer.on('error', err => console.log('服务器出错：', err));
-eventServer.listen(port, () => console.log('监听的端口 %s', port));
+// 通信 socket 监听端口号
+eventServer.listen(port, () => console.log('server_proxy 监听的端口 %s', port));
 
 /**
  * 通信协议socket处理
