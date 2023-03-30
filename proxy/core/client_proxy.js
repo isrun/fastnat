@@ -49,7 +49,6 @@ function connectIntSocket(data) {
 
     //创建内网连接
     proxy.connect({ host: PROXY_HOST, port: PROXY_PORT }, () => {
-
         //连接成功后连接内网端口
         server.connect({ host: SERVER_HOST, port: data.intPort }, () => {
 
