@@ -14,10 +14,8 @@ var PROXY_PORT = 27017;
 
 var eventSocket = new net.Socket();
 var id;
-eventSocket.connect({host: SERVER_HOST, port: SERVER_PORT}, () => {
-
-    console.log('connect server success.')
-
+eventSocket.connect({ host: SERVER_HOST, port: SERVER_PORT }, () => {
+    console.log('链接服务启动成功')
     eventSocket.on('response', data => {
         //本次会话的id
         id = data.id;
@@ -29,14 +27,11 @@ eventSocket.connect({host: SERVER_HOST, port: SERVER_PORT}, () => {
             console.log(data)
         }
     });
-
     eventSocket.on('data', data => {
         eventSocket.emit('response', JSON.parse(data.toString()));
     });
 });
 eventSocket.on("error", err => console.log("连接服务器出错：\n", err));
-
-
 /**
  * 连接内网的socket
  * @param data
@@ -53,13 +48,13 @@ function connectIntSocket(data) {
     //先连接内网服务器，成功后连接外网
 
     //创建内网连接
-    proxy.connect({host: PROXY_HOST, port: PROXY_PORT}, () => {
+    proxy.connect({ host: PROXY_HOST, port: PROXY_PORT }, () => {
 
         //连接成功后连接内网端口
-        server.connect({host: SERVER_HOST, port: data.intPort}, () => {
+        server.connect({ host: SERVER_HOST, port: data.intPort }, () => {
 
             //连接成功后发送一条连接成功的通知
-            server.write(JSON.stringify({outId: data.outId}));
+            server.write(JSON.stringify({ outId: data.outId }));
 
             //交换通道
             proxy.pipe(server);
